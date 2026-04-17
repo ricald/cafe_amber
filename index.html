@@ -1,33 +1,32 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AMBER — specialty coffee & space</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Café Amber — 東京・自由が丘</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --amber:    #C8852A;
-      --amber-lt: #E8A84A;
-      --dark:     #1A1714;
-      --charcoal: #2D2926;
-      --warm-bg:  #F5EFE6;
-      --cream:    #FAF6F0;
-      --sage:     #8A9E8C;
-      --text:     #3A3330;
-      --muted:    #8C7D72;
-      --font-sans: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-      --font-serif: Georgia, 'Times New Roman', serif;
-    }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --amber:    #C8843A;
+      --amber-lt: #E8B87A;
+      --cream:    #FAF6F0;
+      --warm-off: #F5EDE0;
+      --charcoal: #2C2420;
+      --mid:      #6B5544;
+      --light-mid:#9C7E6A;
+      --white:    #FFFFFF;
+    }
 
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: var(--font-sans);
-      color: var(--text);
+      font-family: 'Noto Sans JP', sans-serif;
       background: var(--cream);
-      line-height: 1.7;
+      color: var(--charcoal);
       overflow-x: hidden;
     }
 
@@ -37,40 +36,40 @@
       top: 0; left: 0; right: 0;
       z-index: 100;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       padding: 1.2rem 3rem;
-      transition: background .4s, box-shadow .4s;
-    }
-    nav.scrolled {
-      background: rgba(26,23,20,.92);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 2px 20px rgba(0,0,0,.3);
+      background: rgba(250,246,240,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(200,132,58,0.15);
     }
     .nav-logo {
-      font-family: var(--font-serif);
-      font-size: 1.5rem;
-      letter-spacing: .12em;
-      color: #fff;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--amber);
       text-decoration: none;
     }
-    .nav-logo span { color: var(--amber-lt); }
-    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links {
+      display: flex;
+      gap: 2.4rem;
+      list-style: none;
+    }
     .nav-links a {
-      color: rgba(255,255,255,.85);
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      color: var(--mid);
       text-decoration: none;
-      font-size: .88rem;
-      letter-spacing: .1em;
       text-transform: uppercase;
-      transition: color .25s;
+      transition: color 0.25s;
     }
-    .nav-links a:hover { color: var(--amber-lt); }
+    .nav-links a:hover { color: var(--amber); }
 
     /* ── HERO ── */
-    #hero {
-      position: relative;
+    .hero {
       height: 100vh;
-      min-height: 640px;
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -79,534 +78,534 @@
     .hero-bg {
       position: absolute;
       inset: 0;
-      background:
-        linear-gradient(160deg, rgba(26,23,20,.55) 0%, rgba(200,133,42,.15) 60%, rgba(26,23,20,.7) 100%),
-        url('cafe1.jpg') center/cover no-repeat;
-      transform: scale(1.05);
-      transition: transform 8s ease;
+      background: url('cafe1.jpg') center/cover no-repeat;
+      transform: scale(1.04);
+      transition: transform 8s ease-out;
     }
-    #hero:hover .hero-bg { transform: scale(1); }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(44,36,32,0.62) 0%,
+        rgba(44,36,32,0.28) 60%,
+        rgba(200,132,58,0.18) 100%
+      );
+    }
+    .hero:hover .hero-bg { transform: scale(1.0); }
     .hero-content {
       position: relative;
+      z-index: 2;
       text-align: center;
-      color: #fff;
+      color: var(--white);
       padding: 0 1.5rem;
     }
     .hero-eyebrow {
-      font-size: .78rem;
-      letter-spacing: .35em;
+      font-size: 0.72rem;
+      letter-spacing: 0.4em;
       text-transform: uppercase;
       color: var(--amber-lt);
       margin-bottom: 1.2rem;
       opacity: 0;
-      animation: fadeUp .8s .3s forwards;
+      animation: fadeUp 0.8s 0.3s forwards;
     }
     .hero-title {
-      font-family: var(--font-serif);
-      font-size: clamp(3.5rem, 9vw, 7rem);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 300;
       line-height: 1.05;
-      letter-spacing: .04em;
-      font-weight: 400;
+      letter-spacing: 0.06em;
+      margin-bottom: 1.6rem;
       opacity: 0;
-      animation: fadeUp .8s .5s forwards;
+      animation: fadeUp 0.9s 0.55s forwards;
     }
     .hero-title em {
       font-style: italic;
       color: var(--amber-lt);
     }
     .hero-sub {
-      margin-top: 1.5rem;
-      font-size: 1.05rem;
-      color: rgba(255,255,255,.8);
+      font-size: 0.95rem;
       font-weight: 300;
-      letter-spacing: .03em;
+      line-height: 1.9;
+      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.82);
+      margin-bottom: 2.8rem;
       opacity: 0;
-      animation: fadeUp .8s .7s forwards;
+      animation: fadeUp 0.9s 0.78s forwards;
     }
-    .hero-cta {
-      margin-top: 2.5rem;
-      display: inline-flex;
+    .btn-group {
+      display: flex;
       gap: 1rem;
-      flex-wrap: wrap;
       justify-content: center;
+      flex-wrap: wrap;
       opacity: 0;
-      animation: fadeUp .8s .9s forwards;
+      animation: fadeUp 0.9s 1s forwards;
     }
     .btn {
-      padding: .85rem 2.2rem;
-      font-size: .85rem;
-      letter-spacing: .12em;
+      display: inline-block;
+      padding: 0.9rem 2.4rem;
+      border-radius: 0;
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       text-decoration: none;
-      border-radius: 2px;
-      transition: all .25s;
-      font-weight: 500;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
     }
     .btn-primary {
       background: var(--amber);
-      color: #fff;
-      border: 1px solid var(--amber);
+      color: var(--white);
     }
     .btn-primary:hover {
       background: var(--amber-lt);
-      border-color: var(--amber-lt);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(200,133,42,.4);
+      color: var(--charcoal);
     }
     .btn-outline {
       background: transparent;
-      color: #fff;
-      border: 1px solid rgba(255,255,255,.5);
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,0.5);
     }
     .btn-outline:hover {
-      border-color: #fff;
-      background: rgba(255,255,255,.1);
-      transform: translateY(-2px);
+      background: rgba(255,255,255,0.12);
     }
+
     .scroll-hint {
       position: absolute;
-      bottom: 2.5rem;
+      bottom: 2.4rem;
       left: 50%;
       transform: translateX(-50%);
-      color: rgba(255,255,255,.5);
-      font-size: .72rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
+      z-index: 2;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: .6rem;
-      animation: fadeUp 1s 1.4s both;
+      gap: 0.5rem;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeIn 1s 1.5s forwards;
     }
     .scroll-line {
       width: 1px;
       height: 40px;
-      background: linear-gradient(to bottom, rgba(255,255,255,.4), transparent);
-      animation: scrollPulse 2s 2s infinite;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.4));
+      animation: scrollDown 1.8s 1.5s infinite;
     }
 
     /* ── CONCEPT ── */
-    #concept {
+    .concept {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      min-height: 80vh;
+      min-height: 90vh;
     }
-    .concept-visual {
+    .concept-image {
       position: relative;
       overflow: hidden;
-      min-height: 500px;
     }
-    .concept-visual img {
-      width: 100%;
-      height: 100%;
+    .concept-image img {
+      width: 100%; height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform .6s ease;
+      transition: transform 0.6s ease;
     }
-    .concept-visual:hover img { transform: scale(1.04); }
+    .concept-image:hover img { transform: scale(1.04); }
     .concept-text {
-      background: var(--charcoal);
-      color: #fff;
+      background: var(--warm-off);
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: 5rem 4.5rem;
+      padding: 5rem 5rem 5rem 6rem;
     }
     .section-label {
-      font-size: .72rem;
-      letter-spacing: .3em;
+      font-size: 0.68rem;
+      letter-spacing: 0.42em;
       text-transform: uppercase;
       color: var(--amber);
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.4rem;
     }
-    .concept-text h2 {
-      font-family: var(--font-serif);
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 3.5vw, 3.2rem);
       font-weight: 400;
       line-height: 1.3;
-      margin-bottom: 1.5rem;
+      color: var(--charcoal);
+      margin-bottom: 2rem;
     }
-    .concept-text p {
-      color: rgba(255,255,255,.7);
-      line-height: 1.9;
-      font-size: .97rem;
-      margin-bottom: 1rem;
+    .section-title em {
+      font-style: italic;
+      color: var(--amber);
     }
-    .concept-badges {
-      display: flex;
-      gap: .8rem;
-      flex-wrap: wrap;
-      margin-top: 1.5rem;
-    }
-    .badge {
-      padding: .4rem 1rem;
-      border: 1px solid rgba(200,133,42,.4);
-      color: var(--amber-lt);
-      font-size: .75rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      border-radius: 2px;
-    }
-
-    /* ── MENU ── */
-    #menu {
-      background: var(--warm-bg);
-      padding: 7rem 2rem;
-    }
-    .section-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-    .section-header h2 {
-      font-family: var(--font-serif);
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 400;
-      color: var(--dark);
-      margin-bottom: .8rem;
-    }
-    .section-header p {
-      color: var(--muted);
-      font-size: .95rem;
-      max-width: 480px;
-      margin: 0 auto;
+    .concept-body {
+      font-size: 0.9rem;
+      line-height: 2.0;
+      color: var(--mid);
+      font-weight: 300;
+      margin-bottom: 2.5rem;
     }
     .divider {
       width: 40px;
-      height: 2px;
+      height: 1px;
       background: var(--amber);
-      margin: 1rem auto;
+      margin-bottom: 2rem;
     }
-    .menu-tabs {
-      display: flex;
-      justify-content: center;
-      gap: .5rem;
-      margin-bottom: 3rem;
-      flex-wrap: wrap;
-    }
-    .tab {
-      padding: .6rem 1.6rem;
-      border: 1px solid transparent;
-      background: transparent;
-      cursor: pointer;
-      font-size: .82rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      border-radius: 2px;
-      transition: all .2s;
-    }
-    .tab.active, .tab:hover {
-      border-color: var(--amber);
-      color: var(--amber);
-      background: rgba(200,133,42,.06);
-    }
-    .menu-grid {
-      display: none;
-      max-width: 960px;
-      margin: 0 auto;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
-    .menu-grid.active { display: grid; }
-    .menu-card {
-      background: #fff;
-      border-radius: 4px;
-      overflow: hidden;
-      box-shadow: 0 2px 16px rgba(0,0,0,.06);
-      transition: transform .25s, box-shadow .25s;
-    }
-    .menu-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 32px rgba(0,0,0,.1);
-    }
-    .menu-card-img {
-      height: 180px;
-      overflow: hidden;
-    }
-    .menu-card-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform .4s;
-    }
-    .menu-card:hover .menu-card-img img { transform: scale(1.06); }
-    .menu-card-body {
-      padding: 1.4rem 1.5rem;
-    }
-    .menu-card-body h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--dark);
-      margin-bottom: .3rem;
-    }
-    .menu-card-body p {
-      font-size: .84rem;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-bottom: .8rem;
-    }
-    .menu-price {
-      font-family: var(--font-serif);
-      font-size: 1.05rem;
-      color: var(--amber);
-      font-style: italic;
-    }
-    /* placeholder image colors for menu cards */
-    .img-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.5rem;
-    }
-    .bg-coffee { background: linear-gradient(135deg, #3d2314, #7a4a2a); }
-    .bg-matcha  { background: linear-gradient(135deg, #4a6741, #8a9e6a); }
-    .bg-cake    { background: linear-gradient(135deg, #c49a6c, #e8cda0); }
-    .bg-toast   { background: linear-gradient(135deg, #b5813b, #d4a96a); }
-    .bg-sand    { background: linear-gradient(135deg, #8c7a5e, #c4a882); }
-    .bg-pink    { background: linear-gradient(135deg, #c47e7e, #e8a0a0); }
-    .bg-dark    { background: linear-gradient(135deg, #1a1714, #3d2d24); }
-    .bg-cream   { background: linear-gradient(135deg, #d4c4a8, #f0e4c8); }
-    .bg-mocha   { background: linear-gradient(135deg, #5c3d2e, #8c6450); }
 
-    /* ── GALLERY ── */
-    #gallery {
+    /* ── FEATURES ── */
+    .features {
+      background: var(--charcoal);
+      padding: 7rem 3rem;
+      text-align: center;
+    }
+    .features-header {
+      max-width: 560px;
+      margin: 0 auto 4.5rem;
+    }
+    .features-header .section-label { color: var(--amber-lt); }
+    .features-header .section-title { color: var(--white); }
+    .features-header p {
+      font-size: 0.88rem;
+      line-height: 2.0;
+      color: rgba(255,255,255,0.55);
+      font-weight: 300;
+    }
+    .features-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: 320px 320px;
-    }
-    .gallery-item {
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-    }
-    .gallery-item:first-child {
-      grid-column: span 1;
-      grid-row: span 2;
-    }
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform .5s ease;
-    }
-    .gallery-item:hover img { transform: scale(1.08); }
-    .gallery-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(26,23,20,.0);
-      transition: background .3s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .gallery-item:hover .gallery-overlay { background: rgba(200,133,42,.25); }
-
-    /* ── EXPERIENCE ── */
-    #experience {
-      background: var(--dark);
-      padding: 7rem 2rem;
-      text-align: center;
-      color: #fff;
-    }
-    #experience h2 {
-      font-family: var(--font-serif);
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 400;
-      margin-bottom: .8rem;
-    }
-    #experience .divider { background: var(--amber); }
-    #experience > p {
-      color: rgba(255,255,255,.6);
-      max-width: 560px;
-      margin: 0 auto 3.5rem;
-      font-size: .97rem;
-    }
-    .features {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2.5rem;
-      max-width: 960px;
+      gap: 2px;
+      max-width: 900px;
       margin: 0 auto;
+    }
+    .feature-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(200,132,58,0.15);
+      padding: 3rem 2rem;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .feature-card:hover {
+      background: rgba(200,132,58,0.08);
+      border-color: rgba(200,132,58,0.4);
     }
     .feature-icon {
-      font-size: 2.2rem;
-      margin-bottom: 1rem;
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+      display: block;
     }
-    .feature h3 {
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: .05em;
-      margin-bottom: .6rem;
+    .feature-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
       color: var(--amber-lt);
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.05em;
     }
-    .feature p {
-      font-size: .88rem;
-      color: rgba(255,255,255,.55);
-      line-height: 1.7;
+    .feature-card p {
+      font-size: 0.8rem;
+      line-height: 1.9;
+      color: rgba(255,255,255,0.5);
+      font-weight: 300;
     }
 
-    /* ── STORY ── */
-    #story {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 70vh;
-    }
-    .story-text {
+    /* ── MENU ── */
+    .menu-section {
+      padding: 8rem 3rem;
       background: var(--cream);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 5rem 4.5rem;
     }
-    .story-text h2 {
-      font-family: var(--font-serif);
-      font-size: clamp(2rem, 3vw, 2.6rem);
-      font-weight: 400;
-      line-height: 1.3;
-      margin-bottom: 1.5rem;
-      color: var(--dark);
+    .menu-inner {
+      max-width: 1100px;
+      margin: 0 auto;
     }
-    .story-text p {
-      color: var(--muted);
-      line-height: 1.9;
-      font-size: .97rem;
-      margin-bottom: 1rem;
+    .menu-header {
+      text-align: center;
+      margin-bottom: 5rem;
     }
-    .story-visual {
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+    }
+    .menu-card {
       position: relative;
       overflow: hidden;
+      aspect-ratio: 3/4;
+      cursor: pointer;
     }
-    .story-visual img {
+    .menu-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .menu-card:hover img { transform: scale(1.07); }
+    .menu-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(44,36,32,0.88) 0%, transparent 55%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
+    }
+    .menu-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--amber-lt);
+      margin-bottom: 0.4rem;
+    }
+    .menu-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+    .menu-price {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+    }
+
+    /* ── SPACE / リベ会SECTION ── */
+    .space-section {
+      background: var(--warm-off);
+      padding: 8rem 3rem;
+    }
+    .space-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+    .space-text .section-title { margin-bottom: 1.5rem; }
+    .space-text p {
+      font-size: 0.88rem;
+      line-height: 2.1;
+      color: var(--mid);
+      margin-bottom: 1.2rem;
+      font-weight: 300;
+    }
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 2rem;
+    }
+    .tag {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--amber);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--amber);
+    }
+    .space-image-wrap {
+      position: relative;
+    }
+    .space-image-wrap img {
       width: 100%;
-      height: 100%;
+      aspect-ratio: 4/5;
       object-fit: cover;
       display: block;
     }
-    .story-visual-overlay {
+    .space-image-wrap::before {
+      content: '';
       position: absolute;
-      bottom: 2rem;
-      left: 2rem;
-      background: rgba(26,23,20,.8);
-      backdrop-filter: blur(6px);
-      color: #fff;
-      padding: 1.2rem 1.6rem;
-      border-left: 3px solid var(--amber);
+      top: -20px; right: -20px;
+      width: 100%; height: 100%;
+      border: 1px solid var(--amber);
+      z-index: -1;
     }
-    .story-visual-overlay blockquote {
-      font-family: var(--font-serif);
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      background: var(--charcoal);
+      padding: 7rem 3rem;
+      text-align: center;
+    }
+    .testimonials .section-label { color: var(--amber-lt); }
+    .testimonials .section-title { color: var(--white); margin-bottom: 4rem; }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .review-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(200,132,58,0.15);
+      padding: 2.5rem;
+      text-align: left;
+    }
+    .review-stars {
+      color: var(--amber);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+    .review-text {
+      font-size: 0.82rem;
+      line-height: 2.0;
+      color: rgba(255,255,255,0.6);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
       font-style: italic;
-      font-size: 1rem;
-      line-height: 1.5;
-      color: rgba(255,255,255,.9);
     }
-    .story-visual-overlay cite {
-      display: block;
-      margin-top: .5rem;
-      font-size: .75rem;
+    .reviewer {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
       color: var(--amber-lt);
-      letter-spacing: .1em;
-      font-style: normal;
       text-transform: uppercase;
     }
 
-    /* ── INFO ── */
-    #info {
-      background: var(--charcoal);
-      color: #fff;
-      padding: 6rem 2rem;
+    /* ── ACCESS ── */
+    .access-section {
+      padding: 8rem 3rem;
+      background: var(--cream);
     }
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 3rem;
-      max-width: 960px;
+    .access-inner {
+      max-width: 900px;
       margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
     }
-    .info-block h3 {
-      font-size: .75rem;
-      letter-spacing: .25em;
+    .access-section .section-title { margin-bottom: 2rem; }
+    .access-detail {
+      margin-bottom: 1.5rem;
+    }
+    .access-detail dt {
+      font-size: 0.68rem;
+      letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--amber);
+      margin-bottom: 0.4rem;
+    }
+    .access-detail dd {
+      font-size: 0.88rem;
+      line-height: 1.8;
+      color: var(--mid);
+      font-weight: 300;
+    }
+    .map-placeholder {
+      width: 100%;
+      aspect-ratio: 1;
+      background: var(--warm-off);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(200,132,58,0.2);
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+    .map-placeholder span { font-size: 2.5rem; }
+    .map-placeholder p {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      color: var(--light-mid);
+      text-transform: uppercase;
+    }
+
+    /* ── RESERVATION ── */
+    .reservation {
+      background: var(--amber);
+      padding: 7rem 3rem;
+      text-align: center;
+    }
+    .reservation .section-label { color: rgba(255,255,255,0.7); }
+    .reservation .section-title {
+      color: var(--white);
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
       margin-bottom: 1.2rem;
     }
-    .info-block p, .info-block address {
-      font-style: normal;
-      color: rgba(255,255,255,.65);
-      font-size: .93rem;
-      line-height: 2;
+    .reservation p {
+      font-size: 0.9rem;
+      line-height: 2.0;
+      color: rgba(255,255,255,0.8);
+      max-width: 480px;
+      margin: 0 auto 3rem;
+      font-weight: 300;
     }
-    .hours-row {
-      display: flex;
-      justify-content: space-between;
-      font-size: .9rem;
-      padding: .25rem 0;
-      border-bottom: 1px solid rgba(255,255,255,.06);
-      color: rgba(255,255,255,.65);
-    }
-    .hours-row span:last-child { color: rgba(255,255,255,.85); }
-    .map-placeholder {
-      margin-top: 1.2rem;
-      height: 120px;
-      border-radius: 4px;
-      overflow: hidden;
-      background: linear-gradient(135deg, #2d2926 0%, #1a1714 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(255,255,255,.08);
-      color: rgba(255,255,255,.3);
-      font-size: .8rem;
-      letter-spacing: .1em;
-      cursor: pointer;
-      transition: border-color .2s;
-    }
-    .map-placeholder:hover { border-color: var(--amber); color: var(--amber-lt); }
-    .social-links { display: flex; gap: 1rem; margin-top: 1rem; }
-    .social-link {
-      width: 38px;
-      height: 38px;
-      border: 1px solid rgba(255,255,255,.15);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255,255,255,.5);
+    .btn-white {
+      background: var(--white);
+      color: var(--amber);
+      padding: 1rem 3rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
       text-decoration: none;
-      font-size: 1rem;
-      transition: all .2s;
+      display: inline-block;
+      transition: all 0.3s;
     }
-    .social-link:hover {
-      border-color: var(--amber);
-      color: var(--amber-lt);
-      background: rgba(200,133,42,.1);
+    .btn-white:hover {
+      background: var(--charcoal);
+      color: var(--white);
     }
 
     /* ── FOOTER ── */
     footer {
-      background: var(--dark);
-      text-align: center;
-      padding: 2rem;
-      color: rgba(255,255,255,.3);
-      font-size: .78rem;
-      letter-spacing: .08em;
+      background: var(--charcoal);
+      padding: 4rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
     }
-    footer strong { color: var(--amber); font-weight: 600; }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--amber);
+      letter-spacing: 0.1em;
+    }
+    .footer-sns {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .footer-sns a {
+      font-size: 0.72rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .footer-sns a:hover { color: var(--amber-lt); }
+    .footer-copy {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.12em;
+      width: 100%;
+      text-align: center;
+      margin-top: 1rem;
+    }
 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
+      from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: .4; transform: scaleY(1); }
-      50%       { opacity: 1; transform: scaleY(.7); }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
     }
+    @keyframes scrollDown {
+      0%   { transform: scaleY(0); transform-origin: top; }
+      50%  { transform: scaleY(1); transform-origin: top; }
+      51%  { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+
+    /* ── SCROLL REVEAL ── */
     .reveal {
       opacity: 0;
-      transform: translateY(28px);
-      transition: opacity .7s ease, transform .7s ease;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
     }
     .reveal.visible {
       opacity: 1;
@@ -614,369 +613,277 @@
     }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       nav { padding: 1rem 1.5rem; }
-      .nav-links { display: none; }
-      #concept, #story { grid-template-columns: 1fr; }
-      .concept-text, .story-text { padding: 3.5rem 2rem; }
-      #gallery {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto;
-      }
-      .gallery-item:first-child { grid-column: span 2; grid-row: span 1; height: 240px; }
-      .gallery-item { height: 180px; }
-      .features { grid-template-columns: 1fr 1fr; }
+      .nav-links { gap: 1.2rem; }
+      .concept { grid-template-columns: 1fr; }
+      .concept-text { padding: 4rem 2rem; }
+      .features-grid { grid-template-columns: 1fr; max-width: 400px; }
+      .menu-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+      .space-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .space-image-wrap::before { display: none; }
+      .reviews-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+      .access-inner { grid-template-columns: 1fr; gap: 3rem; }
+      footer { flex-direction: column; text-align: center; }
     }
-    @media (max-width: 480px) {
-      .hero-title { font-size: 3rem; }
-      #gallery { grid-template-columns: 1fr; }
-      .gallery-item:first-child { grid-column: span 1; }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
     }
   </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav id="navbar">
-  <a href="#" class="nav-logo">AM<span>B</span>ER</a>
+<nav>
+  <a href="#" class="nav-logo">Café Amber</a>
   <ul class="nav-links">
-    <li><a href="#concept">CONCEPT</a></li>
-    <li><a href="#menu">MENU</a></li>
-    <li><a href="#gallery">GALLERY</a></li>
-    <li><a href="#story">STORY</a></li>
-    <li><a href="#info">ACCESS</a></li>
+    <li><a href="#concept">Concept</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#space">Space</a></li>
+    <li><a href="#access">Access</a></li>
+    <li><a href="#reservation">Reserve</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
-<section id="hero">
+<section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Specialty Coffee &amp; Space</p>
-    <h1 class="hero-title">A place where<br><em>light lingers</em></h1>
-    <p class="hero-sub">丁寧に淹れた一杯と、光の満ちる空間で。<br>日常に、静かな余白を。</p>
-    <div class="hero-cta">
-      <a href="#menu" class="btn btn-primary">MENU を見る</a>
-      <a href="#concept" class="btn btn-outline">CONCEPT</a>
+    <p class="hero-eyebrow">Tokyo · Jiyugaoka</p>
+    <h1 class="hero-title">
+      あなたの<em>余白</em>を、<br>もっと豊かに。
+    </h1>
+    <p class="hero-sub">
+      仕事終わり、週末の午後、自分を磨く時間に。<br>
+      Café Amber は、東京で頑張るあなたの<br>
+      知的でおしゃれな「第三の場所」です。
+    </p>
+    <div class="btn-group">
+      <a href="#reservation" class="btn btn-primary">予約する</a>
+      <a href="#concept" class="btn btn-outline">詳しく見る</a>
     </div>
   </div>
   <div class="scroll-hint">
-    <span>Scroll</span>
     <div class="scroll-line"></div>
+    <span>Scroll</span>
   </div>
 </section>
 
 <!-- CONCEPT -->
-<section id="concept">
-  <div class="concept-visual">
-    <img src="cafe1.jpg" alt="カフェ内観 — 光の差し込む空間">
+<section class="concept" id="concept">
+  <div class="concept-image">
+    <img src="cafe1.jpg" alt="Café Amber インテリア" loading="lazy" />
   </div>
   <div class="concept-text reveal">
     <p class="section-label">Our Concept</p>
-    <h2>光と木のぬくもりが<br>溶け合う場所</h2>
-    <p>大きな窓から注ぐ自然光、素材感のあるコンクリートと木のテーブル。AMBERは、都市の中にある静かな「余白」です。</p>
-    <p>スペシャルティコーヒーを中心に、一杯一杯を丁寧にハンドクラフト。コーヒーの持つ本来の風味を大切に、シンプルに、誠実に。</p>
-    <div class="concept-badges">
-      <span class="badge">Specialty Coffee</span>
-      <span class="badge">Single Origin</span>
-      <span class="badge">Artisan Space</span>
+    <h2 class="section-title">
+      コーヒー一杯が、<br>
+      <em>自己投資</em>の時間になる。
+    </h2>
+    <div class="divider"></div>
+    <p class="concept-body">
+      リベラルアーツを学ぶ20代OLのために生まれた、東京・自由が丘のスペシャルティカフェ。
+      高速Wi-Fi完備のワークスペース、読書に最適な落ち着いた照明、そして丁寧に淹れた一杯が、あなたの「学ぶ時間」をサポートします。
+    </p>
+    <p class="concept-body">
+      ただのカフェじゃない。ここはあなたが「未来の自分」に投資する場所。
+      仕事も勉強も、もっとスマートに、もっとスタイリッシュに。
+    </p>
+    <a href="#space" class="btn btn-primary" style="align-self:flex-start;">スペースを見る</a>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="features-header reveal">
+    <p class="section-label">Why Café Amber</p>
+    <h2 class="section-title" style="color:var(--white);">リベ会員に<br>選ばれる理由</h2>
+    <p>知識を磨き、自分をアップデートし続けるあなたへ。ここでしか体験できない3つの価値をご提供します。</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <span class="feature-icon">☕</span>
+      <h3>Specialty Coffee</h3>
+      <p>世界各地から厳選したスペシャルティ豆を使用。バリスタが丁寧に抽出する一杯が、思考をクリアにします。</p>
+    </div>
+    <div class="feature-card reveal">
+      <span class="feature-icon">📚</span>
+      <h3>Study & Work Space</h3>
+      <p>高速Wi-Fi・電源完備。集中できる個人席から対話できるグループ席まで。学びにぴったりの環境です。</p>
+    </div>
+    <div class="feature-card reveal">
+      <span class="feature-icon">✨</span>
+      <h3>Member Events</h3>
+      <p>月1回開催のリベ会コラボ読書会・投資勉強会。同じ志を持つ仲間と繋がれる場を定期提供しています。</p>
     </div>
   </div>
 </section>
 
 <!-- MENU -->
-<section id="menu">
-  <div class="section-header reveal">
-    <p class="section-label" style="text-align:center;">Our Menu</p>
-    <h2>こだわりの一杯を</h2>
-    <div class="divider"></div>
-    <p>豆の個性を活かしたスペシャルティコーヒーから、フードまで。</p>
-  </div>
-  <div class="menu-tabs">
-    <button class="tab active" onclick="switchTab('coffee')">Coffee</button>
-    <button class="tab" onclick="switchTab('drinks')">Drinks</button>
-    <button class="tab" onclick="switchTab('food')">Food</button>
-  </div>
-
-  <!-- COFFEE -->
-  <div class="menu-grid active" id="tab-coffee">
-    <div class="menu-card reveal">
-      <div class="menu-card-img">
-        <img src="cafe2.jpg" alt="Flat White">
-      </div>
-      <div class="menu-card-body">
-        <h3>Flat White</h3>
-        <p>シルキーなマイクロフォームと濃厚なエスプレッソが溶け合う、ラテアートが美しい一杯。</p>
-        <span class="menu-price">¥680</span>
-      </div>
+<section class="menu-section" id="menu">
+  <div class="menu-inner">
+    <div class="menu-header reveal">
+      <p class="section-label">Our Menu</p>
+      <h2 class="section-title">こだわりの一杯と、<br><em>丁寧な食事</em>。</h2>
     </div>
-    <div class="menu-card reveal">
-      <div class="menu-card-img">
-        <img src="cafe3.jpg" alt="Mocha">
+    <div class="menu-grid">
+      <div class="menu-card reveal">
+        <img src="cafe2.jpg" alt="シグネチャーラテ" loading="lazy" />
+        <div class="menu-card-overlay">
+          <span class="menu-tag">Signature</span>
+          <p class="menu-name">Amber Latte</p>
+          <p class="menu-price">¥680</p>
+        </div>
       </div>
-      <div class="menu-card-body">
-        <h3>Mocha Latte</h3>
-        <p>上質なカカオとエスプレッソの深い香り。ハートのラテアートが添えられた、甘くほろ苦い一杯。</p>
-        <span class="menu-price">¥720</span>
+      <div class="menu-card reveal">
+        <img src="cafe3.jpg" alt="スペシャルティコーヒー" loading="lazy" />
+        <div class="menu-card-overlay">
+          <span class="menu-tag">Specialty</span>
+          <p class="menu-name">Origin Espresso</p>
+          <p class="menu-price">¥750</p>
+        </div>
       </div>
-    </div>
-    <div class="menu-card reveal">
-      <div class="menu-card-img">
-        <div class="img-placeholder bg-coffee">☕</div>
-      </div>
-      <div class="menu-card-body">
-        <h3>Single Origin Pour Over</h3>
-        <p>その日のシングルオリジン豆をハンドドリップで。豆の持つテロワールを存分に楽しめます。</p>
-        <span class="menu-price">¥780</span>
-      </div>
-    </div>
-    <div class="menu-card reveal">
-      <div class="menu-card-img">
-        <div class="img-placeholder bg-dark">🌑</div>
-      </div>
-      <div class="menu-card-body">
-        <h3>Cold Brew</h3>
-        <p>12時間かけてゆっくり抽出。まろやかで深みのある、アイスコーヒーの最高峰。</p>
-        <span class="menu-price">¥650</span>
-      </div>
-    </div>
-    <div class="menu-card reveal">
-      <div class="menu-card-img">
-        <div class="img-placeholder bg-sand">✨</div>
-      </div>
-      <div class="menu-card-body">
-        <h3>Cortado</h3>
-        <p>エスプレッソとミルクが1:1。コーヒーの個性とミルクの甘さのバランスが絶妙なスペイン発祥の一杯。</p>
-        <span class="menu-price">¥620</span>
-      </div>
-    </div>
-    <div class="menu-card reveal">
-      <div class="menu-card-img">
-        <div class="img-placeholder bg-mocha">🍫</div>
-      </div>
-      <div class="menu-card-body">
-        <h3>Espresso Tonic</h3>
-        <p>エスプレッソをトニックウォーターで割った、苦みと爽やかさが共存するサマードリンク。</p>
-        <span class="menu-price">¥700</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- DRINKS -->
-  <div class="menu-grid" id="tab-drinks">
-    <div class="menu-card reveal">
-      <div class="menu-card-img">
-        <div class="img-placeholder bg-matcha">🍵</div>
-      </div>
-      <div class="menu-card-body">
-        <h3>Matcha Latte</h3>
-        <p>京都産一番摘み抹茶を使用。ミルクフォームとの相性が絶妙な、深緑の一杯。</p>
-        <span class="menu-price">¥680</span>
-      </div>
-    </div>
-    <div class="menu-card reveal">
-      <div class="menu-card-img">
-        <div class="img-placeholder bg-pink">🌸</div>
-      </div>
-      <div class="menu-card-body">
-        <h3>Hojicha Rose Latte</h3>
-        <p>香ばしいほうじ茶とローズの香りのシロップ。ほっとするような甘い香りの季節限定ドリンク。</p>
-        <span class="menu-price">¥750</span>
-      </div>
-    </div>
-    <div class="menu-card reveal">
-      <div class="menu-card-img">
-        <div class="img-placeholder bg-cream">🥛</div>
-      </div>
-      <div class="menu-card-body">
-        <h3>Oat Milk Latte</h3>
-        <p>グラスフェッドオーツミルク使用。まろやかでナッツの風味豊かな、植物性ラテ。</p>
-        <span class="menu-price">¥700</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- FOOD -->
-  <div class="menu-grid" id="tab-food">
-    <div class="menu-card reveal">
-      <div class="menu-card-img">
-        <div class="img-placeholder bg-cake">🍰</div>
-      </div>
-      <div class="menu-card-body">
-        <h3>Basque Cheesecake</h3>
-        <p>表面は香ばしく、中はとろける濃厚なバスクチーズケーキ。毎朝焼き立てをご提供。</p>
-        <span class="menu-price">¥580</span>
-      </div>
-    </div>
-    <div class="menu-card reveal">
-      <div class="menu-card-img">
-        <div class="img-placeholder bg-toast">🍞</div>
-      </div>
-      <div class="menu-card-body">
-        <h3>Ricotta Toast</h3>
-        <p>自家製サワードウブレッドにリコッタチーズ、旬のフルーツとハニーを添えたオープントースト。</p>
-        <span class="menu-price">¥750</span>
-      </div>
-    </div>
-    <div class="menu-card reveal">
-      <div class="menu-card-img">
-        <div class="img-placeholder bg-sand">🥗</div>
-      </div>
-      <div class="menu-card-body">
-        <h3>Grain Bowl</h3>
-        <p>キヌアと季節野菜、温泉卵のグレインボウル。コーヒーとの相性を考えたヘルシーランチ。</p>
-        <span class="menu-price">¥980</span>
+      <div class="menu-card reveal">
+        <img src="cafe2.jpg" alt="フードペアリング" loading="lazy" />
+        <div class="menu-card-overlay">
+          <span class="menu-tag">Seasonal</span>
+          <p class="menu-name">Morning Set</p>
+          <p class="menu-price">¥1,200</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- GALLERY -->
-<section id="gallery">
-  <div class="gallery-item">
-    <img src="cafe1.jpg" alt="空間">
-    <div class="gallery-overlay"></div>
-  </div>
-  <div class="gallery-item">
-    <img src="cafe2.jpg" alt="ラテアート">
-    <div class="gallery-overlay"></div>
-  </div>
-  <div class="gallery-item">
-    <img src="cafe3.jpg" alt="コーヒー">
-    <div class="gallery-overlay"></div>
-  </div>
-  <div class="gallery-item" style="background: var(--dark); display:flex; align-items:center; justify-content:center;">
-    <div style="text-align:center; color: rgba(255,255,255,.6); padding: 2rem;">
-      <p style="font-family:var(--font-serif); font-size:1.4rem; font-style:italic; color: var(--amber-lt); margin-bottom:.5rem;">"一杯に、物語を。"</p>
-      <p style="font-size:.8rem; letter-spacing:.15em; text-transform:uppercase;">AMBER COFFEE</p>
-    </div>
-  </div>
-  <div class="gallery-item" style="background: #2a2420; display:flex; align-items:center; justify-content:center;">
-    <div style="text-align:center; color: rgba(255,255,255,.4); font-size:.85rem; letter-spacing:.1em;">
-      <div style="font-size:2rem; margin-bottom:.5rem;">☕</div>
-      SPECIALTY COFFEE
-    </div>
-  </div>
-</section>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <p class="section-label" style="text-align:center;">Why AMBER</p>
-  <h2>コーヒーを超えた体験を</h2>
-  <div class="divider"></div>
-  <p>素材、空間、時間——すべてに意図を込めて。あなたの「毎日の楽しみ」になる場所を目指しています。</p>
-  <div class="features">
-    <div class="feature reveal">
-      <div class="feature-icon">☕</div>
-      <h3>Specialty Coffee</h3>
-      <p>世界各地から厳選したスペシャルティグレードの豆のみを使用。バリスタが一杯ずつ丁寧に抽出します。</p>
-    </div>
-    <div class="feature reveal">
-      <div class="feature-icon">🏛️</div>
-      <h3>Artisan Space</h3>
-      <p>コンクリートと木材が織り成す、都市の喧騒を忘れさせるインダストリアルモダンな空間。</p>
-    </div>
-    <div class="feature reveal">
-      <div class="feature-icon">🌿</div>
-      <h3>Sustainable</h3>
-      <p>フェアトレード認証豆の使用、コンポスト、リユーザブルカップ割引など、地球に優しい選択を。</p>
-    </div>
-    <div class="feature reveal">
-      <div class="feature-icon">📶</div>
-      <h3>Work-Friendly</h3>
-      <p>高速Wi-Fi完備、電源席あり。集中できる静かな環境で、あなたのクリエイティブをサポート。</p>
-    </div>
-  </div>
-</section>
-
-<!-- STORY -->
-<section id="story">
-  <div class="story-text reveal">
-    <p class="section-label">Our Story</p>
-    <h2>コーヒーが<br>結ぶ、人と場所</h2>
-    <p>AMBERは2018年、「コーヒーを通じて人々の日常に豊かさを」という想いから生まれました。</p>
-    <p>創業者がエチオピアのコーヒー農園を訪れた際に感じた、豆の持つ「物語」と「温かさ」を、この空間でそのまま届けたい。それが私たちの原点です。</p>
-    <p>光の差し込む大きな窓、職人が手がけた木のテーブル——すべては、あなたがここで過ごす時間を、少し特別にするために設えました。</p>
-  </div>
-  <div class="story-visual">
-    <img src="cafe2.jpg" alt="ラテアート">
-    <div class="story-visual-overlay">
-      <blockquote>"The best moments happen<br>over a good cup of coffee."</blockquote>
-      <cite>— AMBER Founder</cite>
-    </div>
-  </div>
-</section>
-
-<!-- INFO -->
-<section id="info">
-  <div class="info-grid">
-    <div class="info-block reveal">
-      <h3>Hours</h3>
-      <div class="hours-row"><span>月〜金</span><span>08:00 — 20:00</span></div>
-      <div class="hours-row"><span>土・日・祝</span><span>09:00 — 21:00</span></div>
-      <div class="hours-row"><span>定休日</span><span>年末年始</span></div>
-      <p style="margin-top:.8rem; font-size:.8rem; color:rgba(255,255,255,.35);">※ラストオーダーは閉店30分前</p>
-    </div>
-    <div class="info-block reveal">
-      <h3>Access</h3>
-      <address>
-        〒150-0001<br>
-        東京都渋谷区神宮前 2-11-5<br>
-        AMBER BUILDING 1F
-      </address>
-      <p style="margin-top:.5rem; font-size:.85rem; color:rgba(255,255,255,.45);">🚉 表参道駅 A2出口 徒歩5分</p>
-      <div class="map-placeholder">
-        ▶ Google マップで開く
+<!-- SPACE / リベ会 -->
+<section class="space-section" id="space">
+  <div class="space-inner">
+    <div class="space-text reveal">
+      <p class="section-label">For Libe Members</p>
+      <h2 class="section-title">学びが、<br><em>日常</em>になる場所。</h2>
+      <div class="divider"></div>
+      <p>リベラルアーツ大学のメンバーなら、ドリンク10%OFF。毎月開催の無料勉強会にも優先参加できます。</p>
+      <p>資産形成・副業・投資の話を、おいしいコーヒーを飲みながら気軽に語り合える仲間が、ここには集まっています。</p>
+      <div class="tag-list">
+        <span class="tag">#リベ会員特典</span>
+        <span class="tag">#月次勉強会</span>
+        <span class="tag">#Wi-Fi完備</span>
+        <span class="tag">#電源あり</span>
+        <span class="tag">#女性一人でも安心</span>
+        <span class="tag">#自由が丘駅徒歩3分</span>
       </div>
     </div>
-    <div class="info-block reveal">
-      <h3>Reservations</h3>
-      <p>カウンター席はウォークイン制。<br>グループ（5名以上）のご予約はお電話またはInstagramのDMにてお問い合わせください。</p>
-      <p style="margin-top:1rem;">📞 03-XXXX-XXXX</p>
-      <div class="social-links" style="margin-top:1.2rem;">
-        <a href="#" class="social-link" title="Instagram">📷</a>
-        <a href="#" class="social-link" title="Twitter/X">𝕏</a>
-        <a href="#" class="social-link" title="LINE">💬</a>
-      </div>
+    <div class="space-image-wrap reveal">
+      <img src="cafe1.jpg" alt="ワークスペース" loading="lazy" />
     </div>
   </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <p class="section-label reveal">Reviews</p>
+  <h2 class="section-title reveal">来てくれたみんなの声</h2>
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <p class="review-stars">★★★★★</p>
+      <p class="review-text">「仕事帰りに勉強できる場所を探していたら、ここに出会いました。Wi-Fiも早くて、コーヒーも最高。リベ会仲間とも繋がれて最高です！」</p>
+      <p class="reviewer">M.K. — 26歳・会社員</p>
+    </div>
+    <div class="review-card reveal">
+      <p class="review-stars">★★★★★</p>
+      <p class="review-text">「Amber Latteが大好きすぎて週4で通ってます。勉強会のメンバーも優しくて、来るたびに刺激をもらっています。」</p>
+      <p class="reviewer">A.T. — 24歳・IT企業勤務</p>
+    </div>
+    <div class="review-card reveal">
+      <p class="review-stars">★★★★★</p>
+      <p class="review-text">「一人でも居心地よくて、ここで副業の計画を全部立てました。空間がおしゃれすぎてSNSに上げたくなる。」</p>
+      <p class="reviewer">R.N. — 28歳・マーケター</p>
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section class="access-section" id="access">
+  <div class="access-inner">
+    <div class="reveal">
+      <p class="section-label">Access</p>
+      <h2 class="section-title">アクセス</h2>
+      <dl>
+        <div class="access-detail">
+          <dt>住所</dt>
+          <dd>東京都目黒区自由が丘X-XX-XX<br>Amberビル 2F</dd>
+        </div>
+        <div class="access-detail">
+          <dt>アクセス</dt>
+          <dd>東急東横線・大井町線「自由が丘駅」<br>正面口より徒歩3分</dd>
+        </div>
+        <div class="access-detail">
+          <dt>営業時間</dt>
+          <dd>月〜金　8:00 – 22:00<br>土・日・祝　9:00 – 21:00</dd>
+        </div>
+        <div class="access-detail">
+          <dt>定休日</dt>
+          <dd>年末年始（12/31〜1/2）</dd>
+        </div>
+        <div class="access-detail">
+          <dt>お問い合わせ</dt>
+          <dd>info@cafe-amber.jp<br>03-XXXX-XXXX</dd>
+        </div>
+      </dl>
+    </div>
+    <div class="map-placeholder reveal">
+      <span>🗺️</span>
+      <p>Google Map</p>
+      <p style="font-size:0.65rem; color:var(--light-mid);">自由が丘駅 徒歩3分</p>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVATION CTA -->
+<section class="reservation" id="reservation">
+  <p class="section-label reveal">Reservation</p>
+  <h2 class="section-title reveal">今すぐ、<em style="color:rgba(255,255,255,0.75)">あなたの席</em>を。</h2>
+  <p class="reveal">週末は混み合います。特にリベ会勉強会の日は満席になることも。お早めのご予約をおすすめします。</p>
+  <a href="mailto:info@cafe-amber.jp" class="btn-white reveal">席を予約する →</a>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <p>&copy; 2026 <strong>AMBER</strong> Specialty Coffee &amp; Space. All rights reserved.</p>
+  <div class="footer-logo">Café Amber</div>
+  <div class="footer-sns">
+    <a href="#">Instagram</a>
+    <a href="#">Twitter / X</a>
+    <a href="#">LINE</a>
+    <a href="#">Note</a>
+  </div>
+  <p class="footer-copy">© 2026 Café Amber. All rights reserved. — 東京都目黒区自由が丘</p>
 </footer>
 
 <script>
-  /* ── Nav scroll ── */
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 60);
-  });
-
-  /* ── Reveal on scroll ── */
-  const revealEls = document.querySelectorAll('.reveal');
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.12 });
-  revealEls.forEach(el => observer.observe(el));
+  reveals.forEach(el => observer.observe(el));
 
-  /* ── Menu tabs ── */
-  function switchTab(name) {
-    document.querySelectorAll('.menu-grid').forEach(g => g.classList.remove('active'));
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('tab-' + name).classList.add('active');
-    event.target.classList.add('active');
-    /* re-trigger reveals in new tab */
-    document.querySelectorAll('#tab-' + name + ' .reveal').forEach(el => {
-      el.classList.remove('visible');
-      observer.observe(el);
+  // Smooth active nav
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
     });
-  }
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--amber)' : '';
+    });
+  });
 </script>
 </body>
 </html>
